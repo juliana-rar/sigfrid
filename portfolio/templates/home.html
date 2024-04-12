@@ -1,0 +1,54 @@
+{% extends 'layout.html'%}
+
+
+
+{% block content%}
+{% load static%}
+
+<header class="row bg-black">
+    <div class="col-md-4">
+<img src="{% static 'portfolio/sigfrid.png'%}"alt=""/>
+    </div>
+
+    <div class="col-md-8 my-auto">
+        <h1>I am <strong> Sigfrid Art</h1>
+        <h3>Artist</h3>
+        <p class="m-left-5">Al contrario del pensamiento popular, el texto de Lorem Ipsum no es simplemente texto aleatorio. Tiene sus raices en una pieza cl´sica de la literatura del Latin, que data del año 45 antes de Cristo, haciendo que este adquiera mas de 2000 años de antiguedad. Richard McClintock, un profesor de Latin de la Universidad de Hampden-Sydney en Virginia, encontró una de las palabras más oscuras de la lengua del latín, "consecteur", en un pasaje de Lorem Ipsum, y al seguir leyendo distintos textos del latín, descubrió la fuente indudable. Lorem Ipsum viene de las secciones 1.10.32 y 1.10.33 de "de Finnibus Bonorum et Malorum" (Los Extremos del Bien y El Mal) por Cicero, escrito en el año 45 antes de Cristo. Este libro es un tratado de teoría de éticas, muy popular durante el Renacimiento. La primera linea del Lorem Ipsum, "Lorem ipsum dolor sit amet..", viene de una linea en la sección 1.10.32/p>
+        <a 
+        href="{% static 'portfolio/cv.pdf' %} "
+        class="btn btn-primary btn-lg rounded-0 my-3"
+        target="_blank "
+        >Download CV</a>
+    </div>
+</header>
+
+
+
+
+<h1>Home</h1>
+{% comment %} <pre>{{projects}}</pre> {% endcomment %}
+
+<div class="row my-4 text-center">
+    <h3>My projects</h3>
+    <p>Lorem ipsum dolor mis projects los mejoor</p>
+
+    {% for project in projects%}
+
+    <div class="col-md-4 p-4">
+        <div class="card bg-black card-project">
+            <img src="{{project.image.url}}" alt="{{project.title}}" class="card-img-top"/>
+            <div class="card-body">
+                <h2>{{project.title}}</h2><p>{{project.description}}</p>
+                
+                
+                {% if project.url %}
+                <a href="{{project.url}}" class="btn btn-light rounded-0 btn-sm" target="_blank">{{project.url}}</a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    
+    {% endfor %}
+        
+    {% endblock %}
+</div>
