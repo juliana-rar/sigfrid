@@ -2,9 +2,9 @@
   <nav class="navbar navbar-expand-lg">
     <div class="container">
       
-      <a class="navbar-brand" href="{% url 'home' %}">
+      <a class="navbar-brand" href="{% url 'blog:home' %}">
         <img src="https://i.ibb.co/XWXdqFc/LOGO.png" alt="LOGO" border="0" style="height: 70px; margin-right: 5px;" >
-        <a class="navbar-brand" href="{% url 'home' %}"><h2>Sigfrid Art<em></em></h2></a>
+        <a class="navbar-brand" href="{% url 'blog:home' %}"><h2>Sigfrid Art<em></em></h2></a>
       </a>
       
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
@@ -14,10 +14,10 @@
 
         <ul class="navbar-nav ml-auto">
           <li class="nav-item active">
-            <a class="nav-link" href="{% url 'home' %}">Home</a>
+            <a class="nav-link" href="{% url 'blog:home' %}">Home</a>
           </li> 
           <li class="nav-item">
-            <a class="nav-link" href="{% url 'blogs' %}">Noticias</a>
+            <a class="nav-link" href="{% url 'blog:blogs' %}">Noticias</a>
           </li>
 
           <li class="nav-item dropdown">
@@ -26,7 +26,7 @@
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
               {% for category in categories %}
-              <a class="dropdown-item" href="{% url 'category_blogs' category.slug %}">{{category.title}}</a>
+              <a class="dropdown-item" href="{% url 'blog:category_blogs' category.slug %}">{{category.title}}</a>
               {% endfor %}
             </div>
           </li>
@@ -38,21 +38,15 @@
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
               
-              <a class="dropdown-item" href="{% url 'profile' %}">Perfil</a>
-              <a class="dropdown-item" href="{% url 'user_notifications' %}">
-                {% if unseen > 0 %}
-                Notificaciones ({{unseen}})
-                {% else %}
-                Notificaciones
-                {% endif %}
-              </a>
-              <a class="dropdown-item" href="{% url 'logout' %}">Cerrar sesión</a>
+              <a class="dropdown-item" href="{% url 'user_profile:profile' %}">Perfil</a>
+       
+              <a class="dropdown-item" href="{% url 'user_profile:logout' %}">Cerrar sesión</a>
              
             </div>
           </li>
           {% else %}
           <li class="nav-item">
-            <a class="nav-link" href="{% url 'login' %}">Iniciar sesión</a>
+            <a class="nav-link" href="{% url 'user_profile:login' %}">Iniciar sesión</a>
           </li>
           {% endif %}
         </ul>

@@ -2,6 +2,9 @@
 from django.urls import path
 from .views import *
 from . import views
+app_name = "blog"
+
+
 urlpatterns = [
     path('', home, name="home"),
     path('blogs/', blogs, name="blogs"),
@@ -15,8 +18,8 @@ urlpatterns = [
     path('my_blogs/', my_blogs, name='my_blogs'),
     path('add_blog/', add_blog, name='add_blog'),
     path('update_blog/<str:slug>/', update_blog, name='update_blog'),
-    path("categories/", views.manage_categories, name="manage_categories"),
-    path("categories/delete/<int:category_id>/", views.delete_category, name="delete_category"),
-    path("categories/edit/<int:category_id>/", views.edit_category, name="edit_category"),  
+    path("blogcategories/", views.manage_categories, name="manage_categories"),
+    path("blogcategories/delete/<int:category_id>/", views.delete_category, name="delete_category"),
+    path("blogcategories/edit/<int:category_id>/", views.edit_category, name="edit_category"),  
 
 ]

@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+﻿# -*- coding: utf-8 -*-
 from django.db import models
 from django.utils.text import slugify
 from ckeditor.fields import RichTextField
@@ -32,19 +32,18 @@ class Event(models.Model):
     )
     title = models.CharField(max_length=250)
     slug = models.SlugField(null=True, blank=True)
-    banner = models.ImageField(upload_to='event_banners')
+    image = models.ImageField(upload_to='event_banners/', blank=True, null=True)
     description = RichTextField()
-    start_date = models.DateTimeField()
-    end_date = models.DateTimeField(null=True, blank=True)
-    location = models.CharField(max_length=250, blank=True)
-    created_date = models.DateTimeField(auto_now_add=True)
-
+ 
     def __str__(self):
         return self.title
 
-    def save(self,*args, **kwargs):
-        if self.pk:
-            self.slug = generate_unique_slug(self, self.title, update=True)
-        else:
+    def save(self, *args, **kwargs):
+        if not self.slug:  #  correcto indentado
+            from events.slugs import generate_unique_slug
             self.slug = generate_unique_slug(self, self.title)
-        super().save(*args, **kwargs)
+        super().save(*args, **kwargs)  # aqui acaba la funcion
+
+
+
+

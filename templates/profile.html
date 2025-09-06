@@ -33,7 +33,7 @@
                                     </button>
                                 </div>
                                 <div class="modal-body">
-                                    <form method="POST" action="{% url 'change_profile_picture' %}" enctype="multipart/form-data">
+                                    <form method="POST" action="{% url 'user_profile:change_profile_picture' %}" enctype="multipart/form-data">
                                         {% csrf_token %}
                                         <div class="form-group">
                                             <input class="form-control" type="file" name="profile_image" required>
@@ -49,38 +49,40 @@
                 </div>
                 <ul class="list-group text-center mt-2 mb-5">
                     <li class="list-group-item my-1">
-                        <a class="text-decoration-none" href="{% url 'my_blogs' %}">
+                        <a class="text-decoration-none" href="{% url 'blog:my_blogs' %}">
                             Mis Noticias
                         </a>
                     </li>
                     <li class="list-group-item my-1">
-                        Mis eventos
+                        <a class="text-decoration-none" href="{% url 'events:my_events' %}">
+
+                            Mis eventos
                         </a>
                     </li>
                     <li class="list-group-item my-1">
-                        <a class="text-decoration-none" href="{% url 'add_blog' %}">
+                        <a class="text-decoration-none" href="{% url 'blog:add_blog' %}">
                             Añadir Noticia
                         </a>
                     </li>
                     <li class="list-group-item my-1">
-                        <a class="text-decoration-none" href="{% url 'add_event' %}">
+                        <a class="text-decoration-none" href="{% url 'events:add_event' %}">
                             Añadir evento
                         </a>
                     </li>
                     <li class="list-group-item my-1">
-                        <a class="text-decoration-none" href="{% url 'manage_categories' %}">
+                        <a class="text-decoration-none" href="{% url 'blog:manage_categories' %}">
                             Gestionar Categorías
                         </a>
                     </li>
                     <li class="list-group-item my-1">
-                        <a class="text-decoration-none" href="{% url 'manage_event_categories' %}">
+                        <a class="text-decoration-none" href="{% url 'events:manage_event_categories' %}">
                             Gestionar Categorías de Eventos
                         </a>
                     </li>
                 </ul>
             </div>
             <div class="col-md-8">
-                <form class="px-4" action="{% url 'profile' %}" method="POST">
+                <form class="px-4" action="{% url 'user_profile:profile' %}" method="POST">
                     {% csrf_token %}
                     {% if messages %}
                     <div class="form-group">
@@ -136,37 +138,3 @@
 
 {% endblock content %}
 
-{% comment %} {% extends 'base.html' %}
-{% load static %}
-{% block title %} My Profile {% endblock title %}
-
-{% block content %}
-
-
-<section class="profile">
-    <div class="container-fluid">
-        <div class="row py-5">
-            <div class="col-md-4">
-                <div class="text-center">
-                    <img class="rounded rounded-circle profile-picture" src="{{request.user.get_profile_picture}}" alt="">
-                    <ul class="text-center py-3">
-                        <li class="py-2">
-                            <span>Posts: <strong>{{account.user_blogs.count}}</strong></span>
-                        </li>
-                        <li class="py-2">
-                            <span>Follwers: <strong>{{account.followers.all.count}}</strong></span>
-                        </li>
-                        <li class="py-2">
-                            <span>Following: <strong>{{account.user_follows.all.count}}</strong></span>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <div class="col-md-8">
-                second column
-            </div>
-        </div>
-    </div>
-</section> {% endcomment %}
-{% comment %}
-{% endblock content %} {% endcomment %}

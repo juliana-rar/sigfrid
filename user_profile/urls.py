@@ -1,8 +1,10 @@
 # -*- coding: utf-8 -*-
 
 from django.urls import path
-# from . import views
+from . import views
 from .views import *
+
+app_name = 'user_profile'
 
 urlpatterns= [
    path('user/<str:username>/', view_user_information, name='view_user_information'),

@@ -1,14 +1,16 @@
-# -*- coding: utf-8 -*-
+﻿# -*- coding: utf-8 -*-
 
 from django.utils.text import slugify
 
-def generate_unique_slug(model, value):
-    slug = slugify(value)
-    unique_slug = slug
+from django.utils.text import slugify
+
+def generate_unique_slug(instance, title):
+    slug = slugify(title)
+    ModelClass = instance.__class__  #  la classe correcta
     num = 1
 
-    while model.objects.filter(slug=unique_slug).exists():
-        unique_slug = f"{slug}-{num}"
+    while ModelClass.objects.filter(slug=slug).exists():
+        slug = f"{slug}-{num}"
         num += 1
 
-    return unique_slug
+    return slug

@@ -10,9 +10,9 @@ class EventForm(forms.ModelForm):
 
     class Meta:
         model = Event
-        fields = ['title', 'category', 'description', 'banner']
+        fields = ['title', 'category', 'description', 'image']
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        # Així només mostrem categories d'events
+        # Aixi nomes mostrem categories d'events
         self.fields['category'].queryset = EventCategory.objects.all()

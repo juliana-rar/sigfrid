@@ -77,7 +77,6 @@ def category_blogs(request, slug):
 def tag_blogs(request, slug):
     tag = get_object_or_404(Tag, slug=slug)
     queryset = tag.tag_blogs.all()
-    # blogs = Blog.objects.filter(tags=tag)
     tags = Tag.objects.order_by('-created_date')[:5]
     page = request.GET.get('page', 1)
     paginator = Paginator(queryset, 2)
@@ -110,7 +109,6 @@ def blog_details(request, slug):
     recent_posts = Blog.objects.order_by('-created_date')[:5]  # Obteen los 5 posts mas recientes
 
     liked_by = request.user in blog.likes.all()
-    # iked_by = request.user in blog.likes.all()
 
     if request.method == "POST" and request.user.is_authenticated:
         form = TextForm(request.POST)
